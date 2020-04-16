@@ -79,22 +79,27 @@ public class Curso {
 			throw new ArgumentInvalidException("Cant de materias cursando mayor a 3"); //LANZO EXCEPTION XQ PUEDO SALVAR  LA VALIDACION
 		}																				//POR EJ RENUNCIAN A UNA MATERIA
 		
-		inscriptos.add(a);
-		Curso newCurso = new Curso();
-		
-		newCurso.setId(this.id);
-		newCurso.setNombre(this.nombre);
-		newCurso.setCicloLectivo(this.cicloLectivo);
-		newCurso.setCupo(this.cupo);
-		newCurso.setInscriptos(this.inscriptos);
-		newCurso.setCreditos(this.creditos);
-		newCurso.setCreditosRequeridos(this.creditosRequeridos);
-		newCurso.setLog(this.log);
-
-		System.out.println("Se inscribio al alumno: "+a.getNombre());
-		a.empezoAcursar(newCurso);
-		log.registrar(this, "inscribir ",a.toString());
-		return true;
+		try {
+			inscriptos.add(a);
+			Curso newCurso = new Curso();
+			
+			newCurso.setId(this.id);
+			newCurso.setNombre(this.nombre);
+			newCurso.setCicloLectivo(this.cicloLectivo);
+			newCurso.setCupo(this.cupo);
+			newCurso.setInscriptos(this.inscriptos);
+			newCurso.setCreditos(this.creditos);
+			newCurso.setCreditosRequeridos(this.creditosRequeridos);
+			newCurso.setLog(this.log);
+	
+			System.out.println("Se inscribio al alumno: "+a.getNombre());
+			a.empezoAcursar(newCurso);
+			return true;
+			
+		}catch(NullPointerException e) {
+			throw new ExceptionPunteroNulo("Los punteros estan mal");
+			
+		}
 		
 	}	
 	
